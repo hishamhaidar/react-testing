@@ -17,7 +17,11 @@ test('User Form functionality',async()=>{
 
     render(<UserForm onUserAdd={OnUserAddmock}/>)
 
-    const [name,email] = await screen.findAllByRole('textbox');
+    // const [name,email] = await screen.findAllByRole('textbox');
+    const name =  screen.getByRole('textbox',{name : /Enter Name/i
+        })
+    const email =  screen.getByRole('textbox',{name : /Enter Email/i
+        })
     user.type(name,'h');
     user.type(email,'h@h.test');
     const submit =  screen.getByRole('button');
