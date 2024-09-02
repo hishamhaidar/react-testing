@@ -30,3 +30,19 @@ test('User Form functionality',async()=>{
     expect(OnUserAddmock).toHaveBeenCalledWith({name:'h',email:'h@h.test'})
 
 })
+
+test('form field should reset after submit',async()=>{
+render(<UserForm onUserAdd={()=>{}}/>)
+const nameInp =  screen.getByRole('textbox',{name : /Enter Name/i
+})
+const emailInp =  screen.getByRole('textbox',{name : /Enter Email/i
+})
+const submit =  screen.getByRole('button');
+user.type(nameInp,'h');
+user.type(emailInp,'h@h.test');
+
+await user.click(submit)
+expect(nameInp).toHaveValue('')
+expect(emailInp).toHaveValue('')
+
+})
